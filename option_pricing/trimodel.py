@@ -12,6 +12,7 @@ class TrinomialModel(BaseModel):
         # valid inputs
         assert (spot > 0)
         assert (0.0 < sigma <= 1.0)
+        assert (0.0 <= rate <= 1.0)
         assert (m_time > 0.0)
         assert (n_step >= 1 and isinstance(n_step, int))
 
