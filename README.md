@@ -1,5 +1,5 @@
 # PyOptionPricing
-A Python implementation for calculating Call-Put option prices
+A Pure Python implementation for calculating Call/Put option prices
 
 # For testing the implementation
 You can use either virtual environments or containers for testing this module.
