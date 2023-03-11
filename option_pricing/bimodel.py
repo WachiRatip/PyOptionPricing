@@ -1,5 +1,8 @@
-class BinomialModel():
-    def __init__(self, spot, up, down, rate, n_step):
+
+from option_pricing.basemodel import BaseModel
+
+class BinomialModel(BaseModel):
+    def __init__(self, spot: float, up: float, down: float, rate: float, n_step: int) -> None:
         # valid inputs
         assert (spot > 0)
         assert (-1 < down < rate < up)
@@ -14,20 +17,20 @@ class BinomialModel():
 
         # set path's placeholders
         self.path = [0]*n_step
-        self.prices = [0]*n_step
+        self.prices = [0.0]*n_step
 
         # compute the risk-neutral probability and return the probabilties
         # for the stock price moving up and down respectively.
         self.prob_up, self.prob_down = self.get_risk_neutral_prob(up, down, rate)
 
     # generate path by given a path number x range from 0 to (2^{n_step} - 1)
-    def get_path(self, x):
+    def get_path(self, x: int) -> None:
         for idx in range(self.n_step):
             self.path[idx] = x%2
             x = int(x/2)
 
     # generate assosiated prices according to the corresponds path
-    def get_path_prices(self):
+    def get_path_prices(self) -> None:
         _stock_price = self.spot
         for idx in range(self.n_step):
             if (self.path[idx] == 0):
@@ -37,7 +40,7 @@ class BinomialModel():
             _stock_price = self.prices[idx]
 
     # compute the probability of an assosiated path
-    def get_path_prob(self):
+    def get_path_prob(self) -> float:
         num_up = 0
         num_down = 0
         for idx in range(self.n_step):
@@ -49,7 +52,7 @@ class BinomialModel():
         return (self.prob_up**num_up)*(self.prob_down**num_down)
 
     # compute probabilties for moving up and down respectively.
-    def get_risk_neutral_prob(self, up, down, rate):
+    def get_risk_neutral_prob(self, up: float, down: float, rate: float) -> tuple[float]:
         # the risk-neutral probability
         q = (rate-down)/(up-down)
         return (q, 1-q)
