@@ -28,12 +28,11 @@ class TrinomialModel(BaseModel):
 
         # Set dt and dx according to given time maturity and number of time steps
         self.dt = self.m_time/self.n_step
-        self.dx = sigma*sqrt(2*self.dt)
+        self.dx = self.sigma*sqrt(2*self.dt)
 
         # compute the risk-neutral probability and return the probabilties
         # for the stock price moving up, down and neutral respectively.
-        self.prob_up, self.prob_down = self.get_risk_neutral_prob(sigma, rate)
-        self.prob_neutral = 1 - self.prob_up - self.prob_down
+        self.prob_up, self.prob_down, self.prob_neutral = self.get_risk_neutral_prob()
 
     # generate path by the given number between 0 and 3^{n_step}-1
     def get_path(self, x: int) -> None:
@@ -75,11 +74,11 @@ class TrinomialModel(BaseModel):
         
         return (self.prob_up ** num_up) * (self.prob_down ** num_down) * (self.prob_neutral ** num_neutral)
     
-    # compute risk neutual probabilties for moving up and down respectively
-    def get_risk_neutral_prob(self, sigma: float, rate: float) -> tuple[float]:
-        nu = rate-sigma*sigma/2
-
+    # compute risk neutual probabilties for moving up, down and neutral respectively.
+    def get_risk_neutral_prob(self) -> tuple[float]:
         # the risk-neutral probability
-        prob_up = ((sigma*sigma*self.dt + nu*nu*self.dt*self.dt)/self.dx/self.dx + nu*self.dt/self.dx)/2
-        prob_down = ((sigma*sigma*self.dt + nu*nu*self.dt*self.dt)/self.dx/self.dx - nu*self.dt/self.dx)/2
-        return (prob_up, prob_down)
+        nu = self.rate-(self.sigma*self.sigma)*0.5
+        prob_up = (((self.sigma*self.sigma*self.dt) + (nu*nu*self.dt*self.dt))/self.dx/self.dx + (nu*self.dt)/self.dx)*0.5
+        prob_down = (((self.sigma*self.sigma*self.dt) + (nu*nu*self.dt*self.dt))/self.dx/self.dx - (nu*self.dt)/self.dx)*0.5
+        prob_neutral = 1 - prob_up - prob_down
+        return (prob_up, prob_down, prob_neutral)
