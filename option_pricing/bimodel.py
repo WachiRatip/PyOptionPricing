@@ -23,7 +23,7 @@ class BinomialModel(BaseModel):
 
         # compute the risk-neutral probability and return the probabilties
         # for the stock price moving up and down respectively.
-        self.prob_up, self.prob_down = self.get_risk_neutral_prob(up, down, rate)
+        self.prob_up, self.prob_down = self.get_risk_neutral_prob()
 
     # generate path by given a path number x range from 0 to (2^{n_step} - 1)
     def get_path(self, x: int) -> None:
@@ -54,7 +54,7 @@ class BinomialModel(BaseModel):
         return (self.prob_up**num_up)*(self.prob_down**num_down)
 
     # compute probabilties for moving up and down respectively.
-    def get_risk_neutral_prob(self, up: float, down: float, rate: float) -> tuple[float]:
+    def get_risk_neutral_prob(self) -> tuple[float]:
         # the risk-neutral probability
-        q = (rate-down)/(up-down)
+        q = (self.rate-self.down)/(self.up-self.down)
         return (q, 1-q)
