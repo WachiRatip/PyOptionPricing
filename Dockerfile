@@ -17,4 +17,4 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONPATH=/app/option_pricing
 
 # Run the tests with pytest
-CMD ["pytest", "-v", "--junitxml=junit/test-results.xml", "--cov=src", "--cov-report=xml:/app/coverage.xml", "--cov-report=html:/app/htmlcov", "tests/"]
+CMD ["python", "-m", "pytest", "tests/"]
