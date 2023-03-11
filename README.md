@@ -32,5 +32,5 @@ You can use either virtual environments or containers for testing this module.
     ```
     2.3 run the tests 
     ```
-    docker run option_pricing-test
+    docker run --rm option_pricing-test
     ```
