@@ -6,7 +6,7 @@ class Option():
         self.model = model
 
     # return the discounted price of expected payoff 
-    def get_option_price(self) -> None:
+    def get_option_price(self) -> float:
         _option = 0
         for x in range(self.model.path_based_number**self.model.n_step):
             self.model.get_path(x)
