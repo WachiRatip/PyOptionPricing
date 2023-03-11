@@ -1,6 +1,7 @@
 
 from option_pricing.basemodel import BaseModel
 
+
 class BinomialModel(BaseModel):
     def __init__(self, spot: float, up: float, down: float, rate: float, n_step: int) -> None:
         # valid inputs

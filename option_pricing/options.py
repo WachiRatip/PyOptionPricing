@@ -1,5 +1,6 @@
 from option_pricing.basemodel import BaseModel
 
+
 class Option():
     def __init__(self, model: BaseModel) -> None:
         self.model = model
