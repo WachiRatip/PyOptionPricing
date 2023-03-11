@@ -38,8 +38,8 @@ You can use either virtual environments or containers for testing this module.
 # TO-DO
 - [x] Add Trinomial pricing model
 - [x] Add test cases for Trinomial modeling
-- [ ] Add test cases for Trinomial European call/put option
-- [ ] Add test cases for Trinomial Asian call/put option
+- [x] Add test cases for Trinomial European call/put option
+- [x] Add test cases for Trinomial Asian call/put option
 - [ ] Add American call/put option
 - [ ] Add test cases for Trinomial American call/put option
 - [ ] Add fixed price Asian call/put option
