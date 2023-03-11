@@ -14,7 +14,7 @@ def test_european_call_option_pricing(S0,u,d,r,N,K,expected):
                 up = u,
                 down = d,
                 rate = r,
-                step = N
+                n_step = N
             )
     
     option = EuropeanCallOption(model = model, strike = K)
@@ -31,7 +31,7 @@ def test_european_put_option_pricing(S0,u,d,r,N,K,expected):
                 up = u,
                 down = d,
                 rate = r,
-                step = N
+                n_step = N
             )
     
     option = EuropeanPutOption(model = model, strike = K)
@@ -48,7 +48,7 @@ def test_asian_call_option_pricing(S0,u,d,r,N,K,expected):
                 up = u,
                 down = d,
                 rate = r,
-                step = N
+                n_step = N
             )
     
     option = AsianCallOption(model = model, strike = K)
@@ -65,7 +65,7 @@ def test_asian_put_option_pricing(S0,u,d,r,N,K,expected):
                 up = u,
                 down = d,
                 rate = r,
-                step = N
+                n_step = N
             )
     
     option = AsianPutOption(model = model, strike = K)
