@@ -34,3 +34,29 @@ You can use either virtual environments or containers for testing this module.
     ```
     docker run --rm option_pricing-test
     ```
+
+# TO-DO
+- [x] Add Trinomial pricing model
+- [x] Add test cases for Trinomial modeling
+- [ ] Add test cases for Trinomial European call/put option
+- [ ] Add test cases for Trinomial Asian call/put option
+- [ ] Add American call/put option
+- [ ] Add test cases for Trinomial American call/put option
+- [ ] Add fixed price Asian call/put option
+- [ ] Add test cases for Trinomial fixed price Asian call/put option
+- [ ] Add Lookback call/put option
+- [ ] Add test cases for Trinomial Lookback call/put option
+- [ ] Add Knockout call/put option
+- [ ] Add test cases for Trinomial Knockout call/put option
+- [ ] Add classic Parisian call/put option
+- [ ] Add test cases for Trinomial classic Parisian call/put option
+
+Add Finite difference methods for option pricing
+- [ ] Add Explicit Finite difference method
+- [ ] Add Implicit Finite difference method
+- [ ] Add Crank–Nicolson Finite difference method
+- [ ] Add test cases for Finite difference methods
+
+Add Monte Carlo methods for option pricing
+- [ ] Add a Monte Carlo option model
+- [ ] Add test cases for the Monte Carlo option model 
