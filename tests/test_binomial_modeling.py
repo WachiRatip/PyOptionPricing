@@ -10,6 +10,8 @@ from option_pricing.bimodel import BinomialModel
 def test_option_modeling(S0,u,d,r,N):
     model = BinomialModel(S0,u,d,r,N)
     total_prob = 0
+    previous_path = None
+    previous_prices = None
     for x in range(model.path_based_number**model.n_step):
         model.get_path(x)
         model.get_path_prices()
@@ -31,5 +33,15 @@ def test_option_modeling(S0,u,d,r,N):
                     assert _price[idx-1]<_price[idx]
                 else:
                     assert _price[idx-1]>_price[idx]
+        
+        # check path/price not the same
+        current_path = _path
+        current_prices = _price
+        if previous_path:
+            assert (current_path != previous_path)
+            assert (current_prices != previous_prices)
+        previous_path = _path
+        previous_path = _price
+        model.clear_path()
     
     assert isclose(total_prob, 1.0)
