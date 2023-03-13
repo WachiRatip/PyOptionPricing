@@ -1,12 +1,6 @@
-import random
 import math
+import random
 
-
-# Box–Muller method to generate a random variable with standard normal distribution N(0,1)
-def get_rv_std_normal() -> float:
-    U1 = random.uniform(0, 1)
-    U2 = random.uniform(0, 1)
-    return math.sqrt(-2.0 * math.log(U1)) * math.cos(2.0 * math.pi * U2)
 
 class BlackScholesModel():
     def __init__(self, spot: float, sigma: float, rate: float, m_time: float, n_step: int) -> None:
@@ -38,3 +32,9 @@ class BlackScholesModel():
                     self.sigma*math.sqrt(self.m_time/self.n_step)*get_rv_std_normal()
             )
             _price = self.prices[idx]
+
+# Box–Muller method to generate a random variable with standard normal distribution N(0,1)
+def get_rv_std_normal() -> float:
+    U1 = random.uniform(0, 1)
+    U2 = random.uniform(0, 1)
+    return math.sqrt(-2.0 * math.log(U1)) * math.cos(2.0 * math.pi * U2)

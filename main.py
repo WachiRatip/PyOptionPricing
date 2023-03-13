@@ -1,6 +1,6 @@
 from option_pricing.bimodel import BinomialModel
 from option_pricing.trimodel import TrinomialModel
-from option_pricing.bsmodel import BlackScholesModel
+from option_pricing.mcmodel import BlackScholesModel
 from option_pricing import monte_carlo, options
 
 

@@ -1,6 +1,6 @@
 import math
 import itertools
-from option_pricing.bsmodel import BlackScholesModel
+from option_pricing.mcmodel import BlackScholesModel
 
 
 class Option():
