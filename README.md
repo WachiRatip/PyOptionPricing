@@ -43,7 +43,7 @@ You can use either virtual environments or containers for testing this module.
 - [ ] Add geometric averaging to Asian options
     - [x] Add classes for Geometric Asian options
     - [ ] Rename the class of Asian options to arithmetic Asian options
-    - [ ] Add test cases for Binomial/Trinomial arithmetic Asian options
+    - [x] Add test cases for Binomial/Trinomial/Monte-Carlo Geometric Asian options
 - [ ] Add American call/put options
 - [ ] Add test cases for Binomial/Trinomial American call/put option
 - [ ] Add fixed price Asian call/put options
