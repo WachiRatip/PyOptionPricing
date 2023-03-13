@@ -1,3 +1,4 @@
+from math import exp, log
 from option_pricing.basemodel import BaseModel
 
 
@@ -46,11 +47,18 @@ class AsianOption(Option):
         self.strike = strike
     
     def arithmetic_average(self, prices: list[float]) -> float:
-        _average = 0
+        _average = 0.0
         for price in prices:
             _average += price
         
         return _average/len(prices)
+    
+    def geometric_average(self, prices: list[float]) -> float:
+        _average = 1.0
+        for price in prices:
+            _average *= price
+        
+        return exp(log(_average)/len(prices))
 
 class AsianCallOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
@@ -62,4 +70,16 @@ class AsianPutOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
         # the arithmetic average stock price in the path
         _price = self.arithmetic_average(prices)
+        return max(0, self.strike - _price)
+
+class GeometricAsianCallOption(AsianOption):
+    def payoff(self, prices: list[float]) -> float:
+        # the geometric average stock price in the path
+        _price = self.geometric_average(prices)
+        return max(0, _price - self.strike)
+
+class GeometricAsianPutOption(AsianOption):
+    def payoff(self, prices: list[float]) -> float:
+        # the geometric average stock price in the path
+        _price = self.geometric_average(prices)
         return max(0, self.strike - _price)
