@@ -38,25 +38,35 @@ You can use either virtual environments or containers for testing this module.
 # TO-DO
 - [x] Add Trinomial pricing model
 - [x] Add test cases for Trinomial modeling
-- [x] Add test cases for Trinomial European call/put option
-- [x] Add test cases for Trinomial Asian call/put option
-- [ ] Add American call/put option
-- [ ] Add test cases for Trinomial American call/put option
-- [ ] Add fixed price Asian call/put option
-- [ ] Add test cases for Trinomial fixed price Asian call/put option
-- [ ] Add Lookback call/put option
-- [ ] Add test cases for Trinomial Lookback call/put option
-- [ ] Add Knockout call/put option
-- [ ] Add test cases for Trinomial Knockout call/put option
-- [ ] Add classic Parisian call/put option
-- [ ] Add test cases for Trinomial classic Parisian call/put option
+- [x] Add test cases for Trinomial European call/put options
+- [x] Add test cases for Trinomial Asian call/put options
+- [ ] Add geometric averaging to Asian options
+    - [ ] rename the class of Asian options to arithmetic Asian options
+    - [ ] Add test cases for Binomial/Trinomial arithmetic Asian options
+- [ ] Add American call/put options
+- [ ] Add test cases for Binomial/Trinomial American call/put option
+- [ ] Add fixed price Asian call/put options
+- [ ] Add test cases for Binomial/Trinomial fixed price Asian call/put option
+- [ ] Add Lookback call/put options
+- [ ] Add test cases for Binomial/Trinomial Lookback call/put option
+- [ ] Add Knockout call/put options
+- [ ] Add test cases for Binomial/Trinomial Knockout call/put option
+- [ ] Add classic Parisian call/put options
+- [ ] Add test cases for Binomial/Trinomial classic Parisian call/put option
 
 Add Finite difference methods for option pricing
-- [ ] Add Explicit Finite difference method
-- [ ] Add Implicit Finite difference method
-- [ ] Add Crank–Nicolson Finite difference method
+- [ ] Add Explicit Finite difference methods
+- [ ] Add Implicit Finite difference methods
+- [ ] Add Crank–Nicolson Finite difference methods
 - [ ] Add test cases for Finite difference methods
 
 Add Monte Carlo methods for option pricing
-- [ ] Add a Monte Carlo option model
-- [ ] Add test cases for the Monte Carlo option model 
+- [x] Add a Monte Carlo option model
+- [x] Add test cases for the Monte Carlo option model 
+- [ ] Add Greek parameters
+    - [ ] delta
+    - [ ] gemma
+    - [ ] vega
+    - [ ] theta
+    - [ ] rho
+- [ ] Add the Variance reduction method to compute Monte Carlo pricing
