@@ -1,4 +1,4 @@
-import math
+import statistics
 from option_pricing.basemodel import BaseModel
 
 
@@ -45,41 +45,27 @@ class AsianOption(Option):
         # get user's input
         assert (strike > 0)
         self.strike = strike
-    
-    def arithmetic_average(self, prices: list[float]) -> float:
-        _average = 0.0
-        for price in prices:
-            _average += price
-        
-        return _average/len(prices)
-    
-    def geometric_average(self, prices: list[float]) -> float:
-        _average = 1.0
-        for price in prices:
-            _average *= price
-        
-        return math.exp(math.log(_average)/len(prices))
 
 class AsianCallOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
         # the arithmetic average stock price in the path
-        _price = self.arithmetic_average(prices)
+        _price = statistics.mean(prices)
         return max(0, _price - self.strike)
 
 class AsianPutOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
         # the arithmetic average stock price in the path
-        _price = self.arithmetic_average(prices)
+        _price = statistics.mean(prices)
         return max(0, self.strike - _price)
 
 class GeometricAsianCallOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
         # the geometric average stock price in the path
-        _price = self.geometric_average(prices)
+        _price = statistics.geometric_mean(prices)
         return max(0, _price - self.strike)
 
 class GeometricAsianPutOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
         # the geometric average stock price in the path
-        _price = self.geometric_average(prices)
+        _price = statistics.geometric_mean(prices)
         return max(0, self.strike - _price)

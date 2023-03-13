@@ -1,4 +1,5 @@
 import math
+import statistics
 import itertools
 from option_pricing.mcmodel import BlackScholesModel
 
@@ -48,37 +49,23 @@ class AsianOption(Option):
         # get user's input
         assert (strike > 0)
         self.strike = strike
-    
-    def arithmetic_average(self, prices: list[float]) -> float:
-        _average = 0
-        for price in prices:
-            _average += price
-        
-        return _average/len(prices)
-
-    def geometric_average(self, prices: list[float]) -> float:
-        _average = 1.0
-        for price in prices:
-            _average *= price
-        
-        return math.exp(math.log(_average)/len(prices))
 
 class AsianCallOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
-        _average = self.arithmetic_average(prices)
+        _average = statistics.mean(prices)
         return max(0.0, _average - self.strike)
 
 class AsianPutOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
-        _average = self.arithmetic_average(prices)
+        _average = statistics.mean(prices)
         return max(0.0, self.strike - _average)
 
 class GeometricAsianCallOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
-        _average = self.geometric_average(prices)
+        _average = statistics.geometric_mean(prices)
         return max(0.0, _average - self.strike)
 
 class GeometricAsianPutOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:
-        _average = self.geometric_average(prices)
+        _average = statistics.geometric_mean(prices)
         return max(0.0, self.strike - _average)
