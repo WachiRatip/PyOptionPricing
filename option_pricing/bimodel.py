@@ -1,4 +1,3 @@
-
 from option_pricing.basemodel import BaseModel
 
 

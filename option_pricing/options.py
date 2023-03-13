@@ -1,4 +1,4 @@
-from math import exp, log
+import math
 from option_pricing.basemodel import BaseModel
 
 
@@ -58,7 +58,7 @@ class AsianOption(Option):
         for price in prices:
             _average *= price
         
-        return exp(log(_average)/len(prices))
+        return math.exp(math.log(_average)/len(prices))
 
 class AsianCallOption(AsianOption):
     def payoff(self, prices: list[float]) -> float:

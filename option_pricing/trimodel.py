@@ -1,4 +1,4 @@
-from math import exp, sqrt
+import math
 from option_pricing.basemodel import BaseModel
 
 
@@ -29,7 +29,7 @@ class TrinomialModel(BaseModel):
 
         # Set dt and dx according to given time maturity and number of time steps
         self.dt = self.m_time/self.n_step
-        self.dx = self.sigma*sqrt(2*self.dt)
+        self.dx = self.sigma*math.sqrt(2*self.dt)
 
         # compute the risk-neutral probability and return the probabilties
         # for the stock price moving up, down and neutral respectively.
@@ -45,7 +45,7 @@ class TrinomialModel(BaseModel):
     def get_path_prices(self) -> None:
         def get_stock(i: int):
             # return the stock price at node i-th.
-            return self.spot*exp(i*self.dx)
+            return self.spot*math.exp(i*self.dx)
         
         current_node = 0
         previous_node = 0
