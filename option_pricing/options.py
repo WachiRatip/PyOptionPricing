@@ -15,6 +15,7 @@ class Option():
             _prob = self.model.get_path_prob()
             _payoff = self.payoff(self.model.prices)
             _option += _prob*_payoff
+            self.model.clear_path()
 
         _option = _option/((1+self.model.rate)**self.model.n_step)
         return _option

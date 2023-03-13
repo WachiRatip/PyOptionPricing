@@ -3,6 +3,7 @@ class BaseModel():
         self.path_based_number: int = 2
         self.rate = rate
         self.n_step = n_step
+        self.path = [0]*n_step
         self.prices = [0.0]*n_step
 
     def get_path(self, x: int) -> None:
@@ -16,3 +17,7 @@ class BaseModel():
 
     def get_risk_neutral_prob(self) -> tuple[float]:
         pass
+
+    def clear_path(self) -> None:
+        self.path = [0]*self.n_step
+        self.prices = [0.0]*self.n_step
