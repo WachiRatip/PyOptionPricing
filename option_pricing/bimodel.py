@@ -54,7 +54,7 @@ class BinomialModel(BaseModel):
         return (self.prob_up**num_up)*(self.prob_down**num_down)
 
     # compute probabilties for moving up and down respectively.
-    def get_risk_neutral_prob(self) -> tuple[float]:
+    def get_risk_neutral_prob(self) -> tuple[float,float]:
         # the risk-neutral probability
         q = (self.rate-self.down)/(self.up-self.down)
         return (q, 1-q)

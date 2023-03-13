@@ -76,7 +76,7 @@ class TrinomialModel(BaseModel):
         return (self.prob_up ** num_up) * (self.prob_down ** num_down) * (self.prob_neutral ** num_neutral)
     
     # compute risk neutual probabilties for moving up, down and neutral respectively.
-    def get_risk_neutral_prob(self) -> tuple[float]:
+    def get_risk_neutral_prob(self) -> tuple[float,float,float]:
         # the risk-neutral probability
         nu = self.rate-(self.sigma*self.sigma)*0.5
         prob_up = (((self.sigma*self.sigma*self.dt) + (nu*nu*self.dt*self.dt))/self.dx/self.dx + (nu*self.dt)/self.dx)*0.5
