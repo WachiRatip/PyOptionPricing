@@ -36,12 +36,13 @@ You can use either virtual environments or containers for testing this module.
     ```
 
 # TO-DO
-- [x] Add Trinomial pricing model
+- [x] Add Trinomial pricing models
 - [x] Add test cases for Trinomial modeling
 - [x] Add test cases for Trinomial European call/put options
 - [x] Add test cases for Trinomial Asian call/put options
 - [ ] Add geometric averaging to Asian options
-    - [ ] rename the class of Asian options to arithmetic Asian options
+    - [x] Add classes for Geometric Asian options
+    - [ ] Rename the class of Asian options to arithmetic Asian options
     - [ ] Add test cases for Binomial/Trinomial arithmetic Asian options
 - [ ] Add American call/put options
 - [ ] Add test cases for Binomial/Trinomial American call/put option
