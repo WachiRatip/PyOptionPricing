@@ -19,13 +19,13 @@ def test_gen_std_normal_rv():
     assert isclose(std, 1.0, abs_tol=5e-2)
 
 @pytest.mark.parametrize(
-    "S0,r,sigma,T,step,K,n_sim",
-    [(30.0,0.0,0.3,1,3,29.0,1_000)]
+    "S0,r,sigma,T,step,n_sim",
+    [(30.0,0.0,0.3,1,3,1_000)]
 )
-def test_monte_carlo_sample_path(S0,r,sigma,T,step,K,n_sim):
+def test_monte_carlo_sample_path(S0,r,sigma,T,step,n_sim):
     model = mcmodel.BlackScholesModel(S0, sigma, r, T, step)
     previous_path = None
-    for _ in itertools.repeat(None, 1_000):
+    for _ in itertools.repeat(None, n_sim):
         model.get_sample_path()
         current_path = model.prices
         if previous_path:
