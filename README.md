@@ -71,22 +71,26 @@ Add Monte Carlo methods for option pricing
     - [ ] theta
     - [ ] rho
 - [ ] Add the Variance reduction method to compute Monte Carlo pricing
-- [ ] Add benchmarking
+- [x] Add benchmarking
 
 # Speed test results
-When calculating Asia call option prices via Monte Carlo simulation with step=50 and n_sim=100_000, the results (averaged 5 times) for the last five major Python versions and two PyPy versions:
+Users can run the following steps to conduct the speed testing on their machines.
 ```
-The new Pypy 3.9 took 4.0327 seconds per run.
+cd benchmarking
+python .\benchmark.py --debug
+```
+The following benchmarking was performed using Docker.
+```
+cd benchmarking
+python .\docker_benchmark.py
+```
+When calculating option prices via Monte Carlo simulation with step=252 and n_sim=1_000, the results (averaged 5 times) for the last three major Python versions and the latest PyPy versions:
+```
+Python 3.9 took 4.9028668880462645 seconds per run.
 
-Python 3.7 took 28.192 seconds per run.(Pypy 3.9 is 599.1% faster)
+Python 3.10 took 3.777042102813721 seconds per run.
 
-Python 3.8 took 27.2714 seconds per run.(Pypy 3.9 is 576.3% faster)
+Python 3.11 took 2.761995315551758 seconds per run.
 
-Python 3.9 took 25.8714 seconds per run.(Pypy 3.9 is 541.5% faster)
-
-Python 3.10 took 21.6086 seconds per run.(Pypy 3.9 is 435.8% faster)
-
-Python 3.11 took 17.3501 seconds per run.(Pypy 3.9 is 330.2% faster)
-
-Pypy 3.8 took 4.4112 seconds per run.(Pypy 3.9 is 9.4% faster)
+PyPy 3.9 took 0.6229269981384278 seconds per run.
 ```
