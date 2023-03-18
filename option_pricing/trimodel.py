@@ -41,6 +41,11 @@ class TrinomialModel(BaseModel):
             self.path[idx] = x%3
             x = int(x/3)
 
+    def get_price(self, x: int, i: int) -> float:
+        self.get_path(x)
+        self.get_path_prices()
+        return self.prices[i]
+
     # generate assosiated prices according to the corresponds path
     def get_path_prices(self) -> None:
         def get_stock(i: int):

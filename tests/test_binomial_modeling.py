@@ -45,3 +45,18 @@ def test_option_modeling(S0,u,d,r,N):
         model.clear_path()
     
     assert isclose(total_prob, 1.0)
+
+@pytest.mark.parametrize(
+    "S0,u,d,r,N",
+    [(100,0.1,-0.1,0.0,3),
+     (100,0.1,-0.1,0.05,3)]
+)
+def test_get_price(S0,u,d,r,N):
+    model = BinomialModel(S0,u,d,r,N)
+    for x in range(model.total_path):
+        model.get_path(x)
+        model.get_path_prices()
+        for i, price in enumerate(model.prices):
+            assert model.get_price(x, i)==price
+
+        model.clear_path()

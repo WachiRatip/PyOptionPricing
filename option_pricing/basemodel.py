@@ -9,6 +9,10 @@ class BaseModel():
     def get_path(self, x: int) -> None:
         pass
 
+    # get a stock price at i-th step of path x 
+    def get_price(self, x: int, i: int) -> float:
+        pass
+    
     def get_path_prices(self) -> None:
         pass
 

@@ -30,6 +30,11 @@ class BinomialModel(BaseModel):
             self.path[idx] = x%2
             x = int(x/2)
 
+    def get_price(self, x: int, i: int) -> float:
+        self.get_path(x)
+        self.get_path_prices()
+        return self.prices[i]
+
     # generate assosiated prices according to the corresponds path
     def get_path_prices(self) -> None:
         _stock_price = self.spot
