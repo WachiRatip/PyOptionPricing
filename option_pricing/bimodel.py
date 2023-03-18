@@ -3,7 +3,6 @@ from option_pricing.basemodel import BaseModel
 
 class BinomialModel(BaseModel):
     def __init__(self, spot: float, up: float, down: float, rate: float, n_step: int) -> None:
-        self.path_based_number = 2
         # valid inputs
         assert (spot > 0)
         assert (-1 < down < rate < up)
@@ -17,6 +16,7 @@ class BinomialModel(BaseModel):
         self.n_step = n_step
 
         # set path's placeholders
+        self.total_path = 2**n_step
         self.path = [0]*n_step
         self.prices = [0.0]*n_step
 

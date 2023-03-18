@@ -18,7 +18,7 @@ def test_option_modeling(S0,sigma,r,T,N):
     total_prob = 0
     previous_path = None
     previous_prices = None
-    for x in range(model.path_based_number**model.n_step):
+    for x in range(model.total_path):
         model.get_path(x)
         model.get_path_prices()
         _prob = model.get_path_prob()

@@ -8,7 +8,6 @@ class TrinomialModel(BaseModel):
     interest rate (rate), time maturity of the option (m_time) and and number of time steps (n_step).
     '''
     def __init__(self, spot: float, sigma: float, rate: float, m_time: float, n_step: int) -> None:
-        self.path_based_number = 3
         # valid inputs
         assert (spot > 0)
         assert (0.0 < sigma <= 1.0)
@@ -24,6 +23,7 @@ class TrinomialModel(BaseModel):
         self.n_step = n_step
 
         # set path's placeholders
+        self.total_path = 3**n_step
         self.path = [0]*n_step
         self.prices = [0.0]*n_step
 
