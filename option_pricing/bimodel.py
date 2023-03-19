@@ -12,19 +12,22 @@ class BinomialModel(BaseModel):
                  n_step: int = 3) -> None:
         # valid inputs
         assert (spot > 0)
-        assert (-1 < down < rate < up)
         assert (n_step >= 1 and isinstance(n_step, int))
 
         # set inputs
         self.spot = spot
         # if used the volatility and expiration time; i.e. up and down are None
         if sigma and m_time:
+            assert (0.0 < sigma <= 1.0)
+            assert (0.0 <= rate <= 1.0)
+            assert (m_time > 0.0)
             dt = m_time/n_step
             self.up = exp(sigma*sqrt(dt)) - 1
             self.down = 1/self.up - 1
             self.rate = exp(rate*dt) - 1 
         # if used moving up and down factors; i.e. sigma and m_time are None
         else:
+            assert (-1 < down < rate < up)
             self.up = up
             self.down = down
             self.rate = rate
