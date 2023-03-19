@@ -36,6 +36,7 @@ You can use either virtual environments or containers for testing this module.
     ```
 
 # TO-DO
+- [ ] Add input dividend yield
 - [x] Add Trinomial pricing models
 - [x] Add test cases for Trinomial modeling
 - [x] Add test cases for Trinomial European call/put options
