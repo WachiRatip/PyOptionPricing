@@ -22,9 +22,9 @@ class BinomialModel(BaseModel):
             assert (0.0 <= rate <= 1.0)
             assert (m_time > 0.0)
             dt = m_time/n_step
-            self.up = exp(sigma*sqrt(dt)) - 1
-            self.down = 1/self.up - 1
-            self.rate = exp(rate*dt) - 1 
+            self.up = exp(sigma*sqrt(dt)) - 1.0
+            self.down = exp(-1*sigma*sqrt(dt)) - 1.0
+            self.rate = exp(rate*dt) - 1.0
         # if used moving up and down factors; i.e. sigma and m_time are None
         else:
             assert (-1 < down < rate < up)
