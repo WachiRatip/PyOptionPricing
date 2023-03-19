@@ -8,7 +8,13 @@ from option_pricing.bimodel import BinomialModel
      (100,0.1,-0.1,0.05,3)]
 )
 def test_option_modeling(S0,u,d,r,N):
-    model = BinomialModel(S0,u,d,r,N)
+    model = BinomialModel(
+        spot=S0,
+        up=u,
+        down=d,
+        rate=r,
+        n_step=N
+    )
     total_prob = 0
     previous_path = None
     previous_prices = None
@@ -52,7 +58,13 @@ def test_option_modeling(S0,u,d,r,N):
      (100,0.1,-0.1,0.05,3)]
 )
 def test_get_price(S0,u,d,r,N):
-    model = BinomialModel(S0,u,d,r,N)
+    model = BinomialModel(
+        spot=S0,
+        up=u,
+        down=d,
+        rate=r,
+        n_step=N
+    )
     for x in range(model.total_path):
         model.get_path(x)
         model.get_path_prices()

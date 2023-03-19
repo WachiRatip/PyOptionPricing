@@ -1,8 +1,15 @@
+from math import exp, sqrt
 from option_pricing.basemodel import BaseModel
 
 
 class BinomialModel(BaseModel):
-    def __init__(self, spot: float, up: float, down: float, rate: float, n_step: int) -> None:
+    def __init__(self, spot: float, 
+                 sigma: float = None,
+                 rate: float = 0.03,
+                 up: float = None,
+                 down: float = None,
+                 m_time: float = None,
+                 n_step: int = 3) -> None:
         # valid inputs
         assert (spot > 0)
         assert (-1 < down < rate < up)
@@ -10,9 +17,18 @@ class BinomialModel(BaseModel):
 
         # set inputs
         self.spot = spot
-        self.up = up
-        self.down = down
-        self.rate = rate
+        # if used the volatility and expiration time; i.e. up and down are None
+        if sigma and m_time:
+            dt = m_time/n_step
+            self.up = exp(sigma*sqrt(dt)) - 1
+            self.down = 1/self.up - 1
+            self.rate = exp(rate*dt) - 1 
+        # if used moving up and down factors; i.e. sigma and m_time are None
+        else:
+            self.up = up
+            self.down = down
+            self.rate = rate
+        
         self.n_step = n_step
 
         # set path's placeholders
