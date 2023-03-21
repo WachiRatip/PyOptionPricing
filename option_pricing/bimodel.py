@@ -1,14 +1,15 @@
 from math import exp, sqrt
+from typing import Union
 from option_pricing.basemodel import BaseModel
 
 
 class BinomialModel(BaseModel):
     def __init__(self, spot: float, 
-                 sigma: float = None,
+                 sigma: Union[float, None] = None,
                  rate: float = 0.03,
-                 up: float = None,
-                 down: float = None,
-                 m_time: float = None,
+                 up: Union[float, None] = None,
+                 down: Union[float, None] = None,
+                 m_time: Union[float, None] = None,
                  n_step: int = 3) -> None:
         # valid inputs
         assert (spot > 0)
@@ -16,7 +17,9 @@ class BinomialModel(BaseModel):
 
         # set inputs
         self.spot = spot
-        # if used the volatility and expiration time; i.e. up and down are None
+        # if the volatility and expiration time are used; i.e. up and down are None
+        # this is Black–Scholes model by means of the binomial model approximation.
+        # whenever the volatility and expiration time are used, the class is assumed to be this case
         if sigma and m_time:
             assert (0.0 < sigma <= 1.0)
             assert (0.0 <= rate <= 1.0)
@@ -25,7 +28,7 @@ class BinomialModel(BaseModel):
             self.up = exp(sigma*sqrt(dt)) - 1.0
             self.down = exp(-1*sigma*sqrt(dt)) - 1.0
             self.rate = exp(rate*dt) - 1.0
-        # if used moving up and down factors; i.e. sigma and m_time are None
+        # if moving up and down factors are used; i.e. sigma and m_time are None
         else:
             assert (-1 < down < rate < up)
             self.up = up
