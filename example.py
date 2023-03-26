@@ -1,9 +1,20 @@
+import time
+
 from option_pricing.bimodel import BinomialModel
 from option_pricing.trimodel import TrinomialModel
 from option_pricing.mcmodel import BlackScholesModel
 from option_pricing import monte_carlo, options
 
+def time_it(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"Took {(end_time - start_time)} seconds\n")
+        return result
+    return wrapper
 
+@time_it
 def display_binomial_model():
     print("Start Binomial Pricing Model")
     S0 = 100
@@ -34,8 +45,9 @@ def display_binomial_model():
 
     option = options.AsianPutOption(model = model, strike = K)
     print("--Put Option price : ", option.get_option_price())
-    print()
 
+    
+@time_it
 def display_trinomial_model():
     print("Start Trinomial Pricing Model")
     S0 = 100.0
@@ -66,8 +78,9 @@ def display_trinomial_model():
 
     option = options.AsianPutOption(model = model, strike = K)
     print("--Put Option price : ", option.get_option_price())
-    print()
 
+
+@time_it
 def display_monte_carlo_model():
     print("Start Monte Carlo Pricing Model")
     S0 = 100.0
@@ -92,7 +105,7 @@ def display_monte_carlo_model():
 
     option = monte_carlo.AsianPutOption(model = model, strike = K)
     print("--Put Option price : %.4f with error %.4f" %option.get_option_price(n_sim))
-    print()
+
 
 if __name__=="__main__":
     display_binomial_model()
