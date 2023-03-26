@@ -21,7 +21,7 @@ def display_binomial_model():
     u = 0.1
     d = -0.1
     r = 0.0
-    N = 3
+    N = 20
     K = 130
 
     model = BinomialModel(
@@ -46,7 +46,40 @@ def display_binomial_model():
     option = options.AsianPutOption(model = model, strike = K)
     print("--Put Option price : ", option.get_option_price())
 
+
+@time_it
+def display_multiprocessing_binomial_model():
+    print("Start Binomial Pricing Model (Multiprocessing)")
+    S0 = 100
+    u = 0.1
+    d = -0.1
+    r = 0.0
+    N = 20
+    K = 130
+
+    model = BinomialModel(
+                spot = S0,
+                up = u,
+                down = d,
+                rate = r,
+                n_step = N
+            )
     
+    print("-European Options:")
+    option = options.EuropeanCallOption(model = model, strike = K)
+    print("--Call Option price: ", option.multi_get_option_price())
+
+    option = options.EuropeanPutOption(model = model, strike = K)
+    print("--Put Option price : ", option.multi_get_option_price())
+
+    print("-Asian Options:")
+    option = options.AsianCallOption(model = model, strike = K)
+    print("--Call Option price: ", option.multi_get_option_price())
+
+    option = options.AsianPutOption(model = model, strike = K)
+    print("--Put Option price : ", option.multi_get_option_price())
+
+
 @time_it
 def display_trinomial_model():
     print("Start Trinomial Pricing Model")
@@ -54,7 +87,7 @@ def display_trinomial_model():
     sigma = 0.1
     T = 1.0
     r = 0.0
-    N = 3
+    N = 10
     K = 130.0
 
     model = TrinomialModel(
@@ -87,7 +120,7 @@ def display_monte_carlo_model():
     sigma = 0.1
     T = 1.0
     r = 0.0
-    step = 3
+    step = 10
     K = 130.0
     n_sim = 1000
     model = BlackScholesModel(S0, sigma, r, T, step)
@@ -109,5 +142,6 @@ def display_monte_carlo_model():
 
 if __name__=="__main__":
     display_binomial_model()
+    display_multiprocessing_binomial_model()
     display_trinomial_model()
     display_monte_carlo_model()
